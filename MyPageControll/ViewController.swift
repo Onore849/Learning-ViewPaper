@@ -9,7 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    private let scrollView = UIScrollView()
+    
     private let pageControl: UIPageControl = {
        
         let pageControl = UIPageControl()
@@ -25,6 +27,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.backgroundColor = .red
+        
+        view.addSubview(scrollView)
         view.addSubview(pageControl)
         
     }
@@ -33,7 +38,22 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - 100)
+        
         pageControl.frame = CGRect(x: 10, y: view.frame.size.height - 100, width: view.frame.size.width - 20, height: 70)
+        
+        if scrollView.subviews.count == 2 {
+            
+            configureScrollView()
+            
+        }
+        
+    }
+    
+    private func configureScrollView() {
+        
+        
+        
         
     }
 
