@@ -10,9 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private let pageControl: UIPageControl = {
+       
+        let pageControl = UIPageControl()
+        
+        pageControl.numberOfPages = 5
+        
+        pageControl.backgroundColor = .systemBlue
+        
+        return pageControl
+        
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.addSubview(pageControl)
+        
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        pageControl.frame = CGRect(x: 10, y: view.frame.size.height - 100, width: view.frame.size.width - 20, height: 70)
+        
     }
 
 
