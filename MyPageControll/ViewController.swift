@@ -27,10 +27,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.delegate = self
+        // pageControlでscrollViewを制御する
+        pageControl.addTarget(self,
+                              action: #selector(pageControlDidChange(_:)),
+                              for: .valueChanged)
+        
         scrollView.backgroundColor = .red
         
         view.addSubview(scrollView)
         view.addSubview(pageControl)
+        
+    }
+    
+    @objc private func pageControlDidChange(_ sender: UIPageControl) {
+        
+        let current = sender.currentPage
+        
+        scrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
         
     }
     
@@ -82,5 +96,14 @@ class ViewController: UIViewController {
     }
 
 
+}
+
+extension ViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
+    }
+    
 }
 
