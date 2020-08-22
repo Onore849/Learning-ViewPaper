@@ -52,7 +52,31 @@ class ViewController: UIViewController {
     
     private func configureScrollView() {
         
+        scrollView.contentSize = CGSize(width: view.frame.size.width * 5, height: scrollView.frame.size.height)
         
+        scrollView.isPagingEnabled = true
+        
+        let colors: [UIColor] = [
+        .systemGreen,
+        .systemRed,
+        .systemPink,
+        .systemPurple,
+        .systemOrange
+        ]
+        
+        for i in 0..<5 {
+            
+            let page = UIView(frame: CGRect(x: CGFloat(i) * view.frame.size.width,
+                                            y: 0,
+                                            width: scrollView.frame.size.width,
+                                            height: scrollView.frame.size.height))
+            
+            page.backgroundColor = colors[i]
+            
+            scrollView.addSubview(page)
+            
+            
+        }
         
         
     }
